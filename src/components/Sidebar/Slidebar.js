@@ -30,7 +30,7 @@ export default () => {
       <>
         <Carousel>
           {images.map(({src, title, desc}) => (
-              <Carousel.Item>
+              <Carousel.Item key={title}>
                 <img
                     className="d-block w-100"
                     src={src}
