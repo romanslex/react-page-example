@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar/Slidebar';
 import ArticleList from './components/Articles/ArticleList';
 import articlesJson from './articles';
 import FiltersPanel from './components/FiltersPanel/FiltersPanel';
+import _ from 'lodash';
 
 export default () => {
   const [articles, setArticles] = useState(articlesJson);
@@ -22,6 +23,10 @@ export default () => {
     }));
   };
 
+  const orderByChanged = value => {
+    setArticles(_.orderBy(articles, [value], ['desc']))
+  };
+
   return (
       <div className="container">
         <div className="row pt-3">
@@ -33,6 +38,7 @@ export default () => {
           <div className="col">
             <FiltersPanel searchChanged={searchChanged}
                           currentCategoryChanged={currentCategoryChanged}
+                          orderByChanged={orderByChanged}
             />
           </div>
         </div>
