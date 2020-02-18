@@ -5,7 +5,7 @@ import img3 from './mashina_krasnyj_sportkar_160574_1920x1080.jpg';
 import img4 from './planeta_oblaka_svet_zvezdy_94996_1920x1080.jpg';
 import {Carousel} from 'react-bootstrap';
 
-export default () => {
+export default React.memo(() => {
   const images = [
     {
       src: img1,
@@ -45,4 +45,4 @@ export default () => {
         </Carousel>
       </>
   );
-};
+});
