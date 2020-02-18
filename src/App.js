@@ -5,27 +5,34 @@ import articlesJson from './articles';
 import FiltersPanel from './components/FiltersPanel/FiltersPanel';
 import _ from 'lodash';
 
+const getFilteredArticles = (
+    articles,
+    orderBy,
+    searchFilter,
+    categoryFilter,
+) => {
+  return _.orderBy(articles
+      .filter(i => {
+        return searchFilter === ''
+            || ~i.title.toLowerCase().indexOf(searchFilter)
+            || ~i.description.toLowerCase().indexOf(searchFilter);
+      })
+      .filter(i => {
+        return categoryFilter === 'All' || i.category.toLowerCase() ===
+            categoryFilter.toLowerCase();
+      }),
+      [orderBy],
+      ['desc']
+  );
+};
+
 export default () => {
-  const [articles, setArticles] = useState(articlesJson);
+  const [articles] = useState(articlesJson);
+  const [orderBy, setOrderBy] = useState('publishedAt');
+  const [searchFilter, setSearchFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('All');
 
-  const searchChanged = (value) => {
-    const showedArticles = articlesJson.filter(i => {
-      return value === ''
-          || ~i.title.toLowerCase().indexOf(value)
-          || ~i.description.toLowerCase().indexOf(value);
-    });
-    setArticles(showedArticles);
-  };
-
-  const currentCategoryChanged = value => {
-    setArticles(articlesJson.filter(i => {
-      return value === 'All' || i.category.toLowerCase() === value.toLowerCase();
-    }));
-  };
-
-  const orderByChanged = value => {
-    setArticles(_.orderBy(articles, [value], ['desc']))
-  };
+  const filteredArticles = getFilteredArticles(articles, orderBy, searchFilter, categoryFilter);
 
   return (
       <div className="container">
@@ -36,15 +43,15 @@ export default () => {
         </div>
         <div className="row pt-3">
           <div className="col">
-            <FiltersPanel searchChanged={searchChanged}
-                          currentCategoryChanged={currentCategoryChanged}
-                          orderByChanged={orderByChanged}
+            <FiltersPanel searchChanged={setSearchFilter}
+                          currentCategoryChanged={setCategoryFilter}
+                          orderByChanged={setOrderBy}
             />
           </div>
         </div>
         <div className="row pt-3">
           <div className="col">
-            <ArticleList articles={articles}/>
+            <ArticleList articles={filteredArticles}/>
           </div>
         </div>
       </div>
