@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Sidebar from './components/Sidebar/Slidebar';
+import Slidebar from './components/Slidebar/Slidebar';
 import ArticleList from './components/Articles/ArticleList';
 import articlesJson from './articles';
 import FiltersPanel from './components/FiltersPanel/FiltersPanel';
@@ -38,7 +38,7 @@ export default () => {
       <div className="container">
         <div className="row pt-3">
           <div className="col">
-            <Sidebar/>
+            <Slidebar/>
           </div>
         </div>
         <div className="row pt-3">
