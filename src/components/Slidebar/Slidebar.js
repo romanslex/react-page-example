@@ -1,8 +1,8 @@
 import React from 'react';
-import img1 from './naushniki_fotoapparat_retro_122094_1920x1080.jpg';
-import img2 from './kamni_les_mrak_svet_zamok_69204_1920x1080.jpg';
-import img3 from './mashina_krasnyj_sportkar_160574_1920x1080.jpg';
-import img4 from './planeta_oblaka_svet_zvezdy_94996_1920x1080.jpg';
+import img1 from '../../assets/img/naushniki_fotoapparat_retro_122094_1920x1080.jpg';
+import img2 from '../../assets/img/kamni_les_mrak_svet_zamok_69204_1920x1080.jpg';
+import img3 from '../../assets/img/mashina_krasnyj_sportkar_160574_1920x1080.jpg';
+import img4 from '../../assets/img/planeta_oblaka_svet_zvezdy_94996_1920x1080.jpg';
 import {Carousel} from 'react-bootstrap';
 
 export default React.memo(() => {
