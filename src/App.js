@@ -14,8 +14,8 @@ const getFilteredArticles = (
   return _.orderBy(articles
       .filter(i => {
         return searchFilter === ''
-            || ~i.title.toLowerCase().indexOf(searchFilter)
-            || ~i.description.toLowerCase().indexOf(searchFilter);
+            || ~i.title.toLowerCase().indexOf(searchFilter.toLowerCase())
+            || ~i.description.toLowerCase().indexOf(searchFilter.toLowerCase());
       })
       .filter(i => {
         return categoryFilter === 'All' || i.category.toLowerCase() ===
